@@ -1,0 +1,9 @@
+<!-- head_custom partial: adds theme-color and a minimal inline background that follows prefers-color-scheme -->
+<meta name="theme-color" content="#0b0f12" />
+<style>
+	/* minimal inline styles to avoid white flash and respect OS preference */
+	html{background:#ffffff}
+	@media (prefers-color-scheme: dark){
+		html{background:#0b0f12}
+	}
+</style>

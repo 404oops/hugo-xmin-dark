@@ -1,4 +1,41 @@
+:root {
+  /* light theme fallbacks (kept for compatibility) */
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #666666;
+  --panel: #f9f9f9;
+  --border: #ddd;
+  --accent: #eee;
+  --code-bg: #f9f9f9;
+}
+
+/* Dark theme variables */
+.dark-mode {
+  --bg: #0b0f12; /* near-black */
+  --text: #e6eef3; /* very light */
+  --muted: #9aa6b0;
+  --panel: #0f1417; /* slightly lighter panel */
+  --border: #20282c;
+  --accent: #1a2226;
+  --code-bg: #071013;
+}
+
+/* Respect user's system/browser preference for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f12; /* near-black */
+    --text: #e6eef3; /* very light */
+    --muted: #9aa6b0;
+    --panel: #0f1417; /* slightly lighter panel */
+    --border: #20282c;
+    --accent: #1a2226;
+    --code-bg: #071013;
+  }
+}
+
 body {
+  background: var(--bg);
+  color: var(--text);
   max-width: 800px;
   margin: auto;
   padding: 1em;
@@ -10,42 +47,44 @@ body {
 .menu li { display: inline-block; }
 .article-meta, .menu a {
   text-decoration: none;
-  background: #eee;
+  background: var(--accent);
   padding: 5px;
   border-radius: 5px;
+  color: var(--text);
 }
 .menu, .article-meta, footer { text-align: center; }
 .title { font-size: 1.1em; }
-footer a { text-decoration: none; }
+footer a { text-decoration: none; color: var(--muted); }
 hr {
   border-style: dashed;
-  color: #ddd;
+  color: var(--border);
 }
 
 /* code */
 pre {
-  border: 1px solid #ddd;
-  box-shadow: 5px 5px 5px #eee;
+  border: 1px solid var(--border);
+  box-shadow: 5px 5px 8px rgba(0,0,0,0.4);
   padding: 1em;
   overflow-x: auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
 }
-code { background: #f9f9f9; }
+code { background: var(--code-bg); color: var(--text); padding: 0.1em 0.25em; border-radius: 3px; }
 pre code { background: none; }
 
 /* misc elements */
 img, iframe, video { max-width: 100%; }
 main { hyphens: auto; }
 blockquote {
-  background: #f9f9f9;
-  border-left: 5px solid #ccc;
+  background: var(--panel);
+  border-left: 5px solid var(--border);
   padding: 3px 1em 3px;
 }
 
 table {
   margin: auto;
-  border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
-table thead th { border-bottom: 1px solid #ddd; }
-th, td { padding: 5px; }
-thead, tfoot, tr:nth-child(even) { background: #eee; }
+table thead th { border-bottom: 1px solid var(--border); color: var(--text); }
+th, td { padding: 5px; color: var(--text); }
+thead, tfoot, tr:nth-child(even) { background: var(--panel); }
